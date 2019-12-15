@@ -1,4 +1,4 @@
-import View
+import View.AppView
 
 class Router:
     def __init__(self, appname = "untitled", interface = "CLI"):
@@ -9,7 +9,7 @@ class Router:
         self.session = None
 
     def initInterface(self):
-        self.view = View()
+        self.view = View.AppView.View()
         if self.enable_splash_screen:
             pass
         self.welcome()
@@ -49,6 +49,7 @@ class Router:
                 #Logged in user only
                 if self.session == None:
                     print("Please log in first")
+                    self.change_path(0,1)
                     continue
                 #Otherwise continue
                 if self.path[1] == 0:
