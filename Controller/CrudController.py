@@ -3,7 +3,8 @@ import fileinput
 
 class CRUD:
     def __init__(self,file):
-        self.file=os.path.abspath('./')+'\DB\\'+file
+        self.f_dir = os.path.abspath('./')+'\DB\\'
+        self.file=self.f_dir+file
 
     def readAll(self):
         f = open(self.file,'r+')
