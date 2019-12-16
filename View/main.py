@@ -179,14 +179,23 @@ class View:
     def ajukanPinjaman(self):
         print("Ajukan Pinjaman")
         query = str(input("ID: "))
-        ada = self.getCustomer(query)
-        if ada:
-            print("Sisa tagihan: ")
-            pinjaman = math.abs(int(input("Jumlah pinjaman: ")))
-            pinjaman_awal = 0 #query saldo dr db
-            pinjaman_akhir = pinjaman_awal + pinjaman
-            #update pake pinjaman akhir
-            print("Pengajuan pinjaman berhasil.")
+        cust = self.customer.getWhere("uid",query)
+        if len(cust)>0:
+            if cust[0].pinjaman != 0:
+                print("Anda masih memiliki pinjaman yang harus dilunasi")
+                return False
+            pinjaman = abs(int(input("Jumlah pinjaman: ")))
+            print("biaya Admin: Rp.1.000.000")
+            print("total bunga: Rp.",locale.format_string("%d",pinjaman*0.14,True),sep='')
+            print("Total pinjaman: Rp.",locale.format_string("%d",pinjaman*1.14+1000000,True),sep='')
+            print("Cicilan perbulan: Rp.",locale.format_string("%d",(pinjaman*1.14+1000000)/12,True),sep='')
+            c ='a'
+            while not (c=='y' or c=='n'):
+                c = input("Ajukan? (y/n)")
+            if c=='y':
+                self.customer.update("uid",query,"pinjaman",int(pinjaman*1.14+1000000))
+                self.transaction.addTrx(query,1,int(pinjaman*1.14+1000000))
+                print("Pengajuan pinjaman berhasil.")
             return True
         else:
             print("Pengajuan pinjaman ditolak.")
@@ -195,13 +204,14 @@ class View:
     def bayarPinjaman(self):
         print("Bayar Pinjaman")
         query = str(input("ID: "))
-        ada = self.getCustomer(query)
-        if ada:
-            print("Sisa tagihan: ")
-            pinjaman = math.abs(int(input("Jumlah pembayaran: ")))
-            pinjaman_awal = 0 #query saldo dr db
-            pinjaman_akhir = pinjaman_awal + pinjaman
-            #update pake pinjaman akhir
+        cust = self.customer.getWhere("uid",query)
+        if len(cust)>0:
+            print("Sisa tagihan: Rp.",locale.format_string("%d",cust[0].pinjaman,True),sep='')
+            pinjaman = abs(int(input("Jumlah pembayaran: ")))
+            pinjaman_awal = cust[0].pinjaman
+            pinjaman_akhir = pinjaman_awal - pinjaman
+            self.customer.update("uid",query,"pinjaman",int(pinjaman_akhir))
+            self.transaction.addTrx(query,1,(-1)*pinjaman)
             print("Pembayaran pinjaman berhasil.")
             return True
         else:
@@ -211,9 +221,21 @@ class View:
     def detailPinjaman(self):
         print("Lihat Pinjaman")
         query = str(input("ID: "))
-        ada = self.getCustomer(query)
-        if ada:
-            print("Sisa tagihan anda: ")
+        cust = self.customer.getWhere("uid",query)
+        if len(cust)>0:
+            sisa = 0
+            print("Sisa tagihan anda: Rp.",locale.format_string("%d",cust[0].pinjaman,True),sep='')
+            trxs = self.transaction.getTrx(query,1)
+            print('-'*115)
+            print('|','Tanggal'.center(30),'|','Jumlah'.center(30),'|','Sisa'.center(30),'|','Keterangan'.center(20),'|',sep='')
+            print('-'*115)
+            for trx in trxs:
+                sisa += trx.value
+                if trx.value<0:
+                    print('|',trx.date.center(30),'|',locale.format_string("%d",-1*trx.value,True).ljust(30),'|',locale.format_string("%d",sisa,True).ljust(30),'|','Pebayaran'.ljust(20),'|',sep='')
+                else:
+                    print('|',trx.date.center(30),'|',locale.format_string("%d",trx.value,True).ljust(30),'|',locale.format_string("%d",sisa,True).ljust(30),'|','Pinjaman'.ljust(20),'|',sep='')
+            print('-'*115)
             return True
         else:
             print("Record tidak ditemukan.")
