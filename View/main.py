@@ -355,3 +355,44 @@ class View:
         else:
             print("Gagal delete user.")
             return False
+
+    def sortSimpanan(self):
+        print("Sorted by Simpanan")
+        select = None
+        valid = [0,1]
+        while select == None or select not in valid:
+            select = int(input("Please select (0. asc | 1. desc): "))
+        u_custs = self.customer.getCusts()
+        # sort here
+        custs = u_custs
+        # for key,value in u_custs:
+        #
+        print("List Nasabah")
+        print("-"*150)
+        print("|","Id".center(3),"|","Account".center(20),"|","Nama".center(30),"|","NIK".center(30),"|","Simpanan".center(30),"|","Pinjaman".center(30),"|",sep="")
+        print("-"*150)
+        for i in custs:
+            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).center(30),'|', str(i.pinjaman).center(30),'|',sep='')
+        print("-"*150)
+        return True
+
+
+    def sortPinjaman(self):
+        print("Sorted by Pinjaman")
+        select = None
+        valid = [0,1]
+        while select == None or select not in valid:
+            select = int(input("Please select (0. asc | 1. desc): "))
+        u_custs = self.customer.getCusts()
+        # sort here
+        custs = u_custs
+        # for key,value in u_custs:
+        #
+        print("List Nasabah")
+        print("-"*150)
+        print("|","Id".center(3),"|","Account".center(20),"|","Nama".center(30),"|","NIK".center(30),"|","Simpanan".center(30),"|","Pinjaman".center(30),"|",sep="")
+        print("-"*150)
+        for i in custs:
+            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).center(30),'|', str(i.pinjaman).center(30),'|',sep='')
+        print("-"*150)
+        return True
