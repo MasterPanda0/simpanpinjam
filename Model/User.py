@@ -2,7 +2,6 @@ import Controller.CrudController
 import json
 import fileinput
 
-
 class User:
     def __init__(self):
         self.CRUD = Controller.CrudController.CRUD("Customer.txt")
