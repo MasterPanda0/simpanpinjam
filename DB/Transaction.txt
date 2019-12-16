@@ -1,12 +1,5 @@
 {"id":0,"date":"null","account":"null","type":0,"value":0}
-{ "id":1,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":100000 }
-{ "id":2,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":50000 }
-{ "id":3,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":-125000 }
-{ "id":4,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":-10000 }
-{ "id":5,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":25600 }
-{ "id":6,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":-31250 }
-{ "id":7,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":46656 }
-{ "id":8,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":-823543 }
-{ "id":9,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":16777216 }
-{ "id":10,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":-387420489 }
-{ "id":11,"date":"04/12/2019 12:46:38","account":"GFPJQR","type":0,"value":10000000000 }
+{ "id":1,"date":"16/12/2019 13:53:24","account":"13202361","type":0,"value":1000000 }
+{ "id":2,"date":"16/12/2019 13:53:24","account":"13202361","type":0,"value":150000 }
+{ "id":3,"date":"16/12/2019 13:55:16","account":"13202361","type":0,"value":-100000 }
+{ "id":4,"date":"16/12/2019 14:03:53","account":"13202364","type":0,"value":1500000 }

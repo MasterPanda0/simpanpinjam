@@ -26,8 +26,9 @@ class Customer:
 
     def addCust(self,name,nik,simpanan=0):
         last = self.getCusts()
-        buff = '{ "id":'+str(last[-1].id+1)+',"uid":"'+str(int(last[-1].account.strip('\''))+3)+'","nama":"'+name+'","nik":"'+nik+'","simpanan":'+str(simpanan)+',"pinjaman":0 }'
+        buff = '{ "id":'+str(last[-1].id+1)+',"uid":"'+str(int(last[-1].uid.strip('\''))+3)+'","nama":"'+name+'","nik":"'+nik+'","simpanan":'+str(simpanan)+',"pinjaman":0 }'
         self.CRUD.Write(buff)
+        return str(int(last[-1].uid.strip('\''))+3)
 
     def findRecord(self, col, value):
         data = self.CRUD.readAll().split('\n')
