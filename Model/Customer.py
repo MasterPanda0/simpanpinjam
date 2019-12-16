@@ -56,7 +56,7 @@ class Customer:
 class CustModel:
     def __init__(self,id,acc, name,nik,simpanan, pinjaman):
         self.id = id
-        self.account = acc
+        self.uid = acc
         self.nama = name
         self.NIK = nik
         self.simpanan = simpanan

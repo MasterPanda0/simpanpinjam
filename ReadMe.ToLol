@@ -1,0 +1,50 @@
+User Model:
+method:
+1. GetUsers()
+-> return list of usermodel
+--> attribut:
+---->id (int)
+---->username (str)
+---->password (str)
+---->level (int)
+2. getWhere(col,val)
+->args:
+-->col : kolom
+-->val : nilai dari kolom tersebut
+->return list of usermodel
+--> attribut:
+---->id (int)
+---->username (str)
+---->password (str)
+---->level (int)
+3.addUser(username,password,level)
+->no return
+4.update(wc,wv,col,val)
+->args:
+-->wc : where column
+-->wv : where value of wc
+-->col : column to update
+-->val : value of col to update
+
+Transaction:
+1. getTrxs()
+->return list of transactionmodel
+->attr:
+-->id
+-->date
+-->account
+-->typ #0->simpanan #1->pinjaman
+-->value
+2.getTrx(acc,type)
+->args:
+-->acc: account id
+-->type : 0->simpanan 1->pinjaman
+->return list of transactionmodel
+3. addTrx(account,type,value)
+
+Customer Model
+1.getCusts()
+->return list of customer
+2. getWhere(col,val)
+3.addCust(name,nik,simpanan=0)
+4.update(self,col,val,colu,vals)
