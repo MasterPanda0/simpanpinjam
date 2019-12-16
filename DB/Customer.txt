@@ -1,4 +1,2 @@
 { "id":1,"uid":"13202352","nama":"budi","nik":"1234567891234567","simpanan":100000,"pinjaman":50000000 }
-{ "id":3,"uid":"13202358","nama":"doni","nik":"12345678987654321","simpanan":100000,"pinjaman":123000 }
-{ "id":4,"uid":"13202361","nama":"budi","nik":"1234","simpanan":1050000,"pinjaman":0 }
-{ "id":5,"uid":"13202364","nama":"joni tester","nik":"123456","simpanan":1500000,"pinjaman":1000 }
+{ "id":2,"uid":"13202361","nama":"budi","nik":"1234","simpanan":1050000,"pinjaman":0 }

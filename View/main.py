@@ -3,6 +3,7 @@ import Model.Transaction
 import Model.Customer
 import time, random, string, os, math
 import locale
+from operator import attrgetter
 locale.setlocale(locale.LC_ALL, 'id_ID')
 
 class View:
@@ -364,6 +365,7 @@ class View:
             select = int(input("Please select (0. asc | 1. desc): "))
         u_custs = self.customer.getCusts()
         # sort here
+        u_custs.sort(key = attrgetter('simpanan'),reverse = select)
         custs = u_custs
         # for key,value in u_custs:
         #
@@ -372,7 +374,7 @@ class View:
         print("|","Id".center(3),"|","Account".center(20),"|","Nama".center(30),"|","NIK".center(30),"|","Simpanan".center(30),"|","Pinjaman".center(30),"|",sep="")
         print("-"*150)
         for i in custs:
-            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).center(30),'|', str(i.pinjaman).center(30),'|',sep='')
+            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).ljust(30),'|', str(i.pinjaman).ljust(30),'|',sep='')
         print("-"*150)
         return True
 
@@ -385,6 +387,7 @@ class View:
             select = int(input("Please select (0. asc | 1. desc): "))
         u_custs = self.customer.getCusts()
         # sort here
+        u_custs.sort(key=attrgetter('pinjaman'),reverse=select)
         custs = u_custs
         # for key,value in u_custs:
         #
@@ -393,6 +396,6 @@ class View:
         print("|","Id".center(3),"|","Account".center(20),"|","Nama".center(30),"|","NIK".center(30),"|","Simpanan".center(30),"|","Pinjaman".center(30),"|",sep="")
         print("-"*150)
         for i in custs:
-            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).center(30),'|', str(i.pinjaman).center(30),'|',sep='')
+            print('|',str(i.id).center(3),'|',i.uid.center(20),'|', i.nama.center(30),'|', i.NIK.center(30),'|', str(i.simpanan).ljust(30),'|', str(i.pinjaman).ljust(30),'|',sep='')
         print("-"*150)
         return True

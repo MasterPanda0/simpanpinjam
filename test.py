@@ -49,3 +49,5 @@ tester.update("username","budi","password","123456")
 data = tester.getUsers();
 for i in data:
     print(i.id,i.username,i.password,i.level,sep=" : ")
+
+customers.delete('uid','13202358')

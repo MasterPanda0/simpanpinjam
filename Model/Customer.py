@@ -51,6 +51,14 @@ class Customer:
         raw= raw.replace(old,new)
         self.CRUD.forceWrite(raw)
 
+    def delete(self,col,val):
+        raw = self.CRUD.readAll()
+        rw = raw.split('\n')
+        row = self.findRecord(col,val)
+        raw = raw.replace(rw[row]+'\n','')
+        self.CRUD.forceWrite(raw)
+
+
 
             
 
