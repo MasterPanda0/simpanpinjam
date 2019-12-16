@@ -2,7 +2,7 @@ import View.main
 
 class Router:
     def __init__(self, appname = "untitled", interface = "cli"):
-        self.path = [0,0,0]
+        self.path = [0,0,0,0]
         self.appname = appname
         self.interface = interface
         self.enable_splash_screen = False
@@ -104,10 +104,33 @@ class Router:
                         continue
                     elif self.path[2] == 2:
                         #List Nasabah
-                        res = self.view.listNasabah()
-                        self.handleRes(res,1,2)
-                        self.pressToContinue()
-                        continue
+
+                        if self.path[3] == 0:
+                            msg = self.view.menuLister('Administration Menu',{-1: '..', 1: 'All', 2: "Sort Simpanan",3: "Sort Pinjaman"})
+                            self.change_path(3, self.select_path(-1, 3, msg))
+                            continue
+                        elif self.path[3] == 1:
+                            #all
+                            res = self.view.listNasabah()
+                            self.handleRes(res,2,3)
+                            self.pressToContinue()
+                            continue
+                        elif self.path[3] == 2:
+                            #sort simpanan
+                            res = self.view.sortSimpanan()
+                            self.handleRes(res,2,3)
+                            self.pressToContinue()
+                            continue
+                        elif self.path[3] == 3:
+                            #sort pinjaman
+                            res = self.view.sortPinjaman()
+                            self.handleRes(res,2,3)
+                            self.pressToContinue()
+                            continue
+                        elif self.path[3] == -1:
+                            #up
+                            self.go_to_root_menu(2)
+
                     elif self.path[2] == 3:
                         #Edit Nasabah
                         if not self.required_level(3):
