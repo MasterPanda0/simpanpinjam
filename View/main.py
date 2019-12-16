@@ -15,7 +15,7 @@ class View:
     def auth(self,username,password):
         user = self.users.getWhere("username",username)
         if len(user)>0 and user[0].password == password:
-            return {"username":user[0].username} #otentikasi return data kalo berhasil, kalo gagal return false
+            return {"id":user[0].id,"username":user[0].username,"level":user[0].level} #otentikasi return data kalo berhasil, kalo gagal return false
         else:
             return False
 
@@ -36,8 +36,8 @@ class View:
         return txt
 
     def cls(self):
-        # os.system('cls' if os.name == 'nt' else 'clear')
-        print(chr(27) + "[2J")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        # print(chr(27) + "[2J")
 
     def login(self):
         msg = "Login"
@@ -45,6 +45,7 @@ class View:
         password = str(input("Password: "))
         auth = self.auth(username,password)
         if auth:
+            print("Login success!")
             return auth
         else:
             print("Wrong credential given.")
@@ -103,11 +104,13 @@ class View:
         cust = self.customer.getWhere("uid",query)
         if len(cust)>0:
             nama = str(input("Nama: "))
+            if nama != "":
+                self.customer.update("uid",query,"nama",nama)
             nik = str(input("NIK: "))
+            if nik != "":
+                self.customer.update("uid",query,"nik",nik)
             #update
-            self.customer.update("uid",query,"nama",nama)
-            self.customer.update("uid",query,"nik",nik)
-            print("Update saldo data nasabah.")
+            print("Update data nasabah berhasil.")
             return True
         else:
             print("Gagal update data nasabah.")
@@ -239,4 +242,116 @@ class View:
             return True
         else:
             print("Record tidak ditemukan.")
+            return False
+
+    def changeUsername(self, id):
+        print("Ubah Username")
+        query = str(input("Masukan username baru: "))
+        if query == "":
+            return False
+        user = self.users.getWhere("username",query)
+        if len(user) > 0:
+            print("Username sudah dipakai.")
+            return False
+        self.users.update("id",id,"username",query)
+        print("Update username berhasil.")
+        return True
+
+    def changePassword(self, id):
+        print("Ubah Password")
+        old = str(input("Masukan password lama: "))
+        new = str(input("Masukan password baru: "))
+        re_new = str(input("Masukan password baru lagi: "))
+        if new == "":
+            return False
+        user = self.users.getWhere("id",id)
+        if len(user) > 0:
+            if new == re_new and old == user[0].password:
+                self.users.update("id",id,"password",new)
+                print("Update password berhasil.")
+                return True
+        print("Update password gagal.")
+        return False
+
+    def listUsers(self):
+        users = self.users.getUsers()
+        print("List Users")
+        print("-"*67)
+        print("|","Id".center(3),"|","Username".center(30),"|","Level".center(30),"|",sep="")
+        print("-"*67)
+        for i in users:
+            print('|',str(i.id).center(3),'|', i.username.center(30),'|', str(i.level).center(30),'|',sep="")
+        print("-"*67)
+        return True
+
+    def registerUser(self):
+        print("Reg User")
+        username = str(input("Username: "))
+        level = str(input("Level: "))
+        pwd = str(input("Password: "))
+        re_pwd = str(input("Re-password: "))
+        if pwd != re_pwd:
+            print('Password mismatch')
+            return False
+        if username == "":
+            print('Username cannot be blank!')
+            return False
+        if level == "":
+            print('Level cannot be blank!')
+            return False
+        if not level.isnumeric():
+            print('Level must be a number!')
+            return False
+        level = int(level)
+        exist = self.users.getWhere("username",username)
+        if len(exist) > 0:
+            print("Username already taken")
+            return False
+        query = self.users.addUser(username,pwd,level)
+        print("User berhasil didaftarkan")
+        return True
+
+    def editUser(self, id):
+        print("Edit User")
+        query = int(input("ID: "))
+        if query == id:
+            print("Tolong ubah data anda pada setting.")
+            return False
+        user = self.users.getWhere("id",query)
+        if len(user)>0:
+            username = str(input("Username: "))
+            if username != "":
+                self.users.update("id",query,"username",username)
+            pwd = str(input("Password: "))
+            if pwd != "":
+                self.users.update("id",query,"password",pwd)
+            #update
+            print("Update data user berhasil.")
+            return True
+        else:
+            print("Gagal update data user.")
+            return False
+
+    def deleteUser(self, id):
+        print("Delete User")
+        query = int(input("ID: "))
+        if query == id:
+            print("Tidak dapat menghapus diri sendiri")
+            return False
+        user = self.users.getWhere("id",query)
+        if len(user)>0:
+            choice = None
+            while choice == None or choice.lower() != "y" or choice.lower() != "n":
+                choice = str(input("Are you sure (y/n): "))
+                if choice.lower() == "y" or choice.lower() == "n":
+                    break
+            if choice.lower() == "y":
+                #delete user
+                print("Delete user berhasil.")
+                return True
+            else:
+                print("Anda menggagalkan operasi delete user.")
+                return False
+        else:
+            print("Gagal delete user.")
             return False

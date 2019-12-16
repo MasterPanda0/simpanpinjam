@@ -1,2 +1,3 @@
-{"id":1,"username":"admin","password":"admin","level":1}
+{"id":1,"username":"admin","password":"admin","level":5}
 { "id":2,"username":"budi","password":"123456","level":2 }
+{ "id":3,"username":"lolidragon","password":"aa","level":2 }
