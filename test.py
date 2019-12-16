@@ -33,13 +33,19 @@ customers = Model.Customer.Customer()
 transactions = Model.Transaction.Transactions()
 uid = id_generator()
 print("UID:",uid)
-for i in range(20):
-    transactions.addTrx(uid,i%2,((-1)**i)*i**i)
-    time.sleep(1)
+#for i in range(20):
+#    transactions.addTrx(uid,i%2,((-1)**i)*i**i)
+#    time.sleep(1)
 
 printmutasi('GFPJQR',0)
 
-customers.update("uid","13202358","pinjaman",123000)
+#customers.update("uid","13202358","pinjaman",123000)
 
 end = time.time()
 print(end - start)
+
+#tester.addUser("budi","budi",2)
+tester.update("username","budi","password","123456")
+data = tester.getUsers();
+for i in data:
+    print(i.id,i.username,i.password,i.level,sep=" : ")
