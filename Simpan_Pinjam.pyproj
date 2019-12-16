@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>8909bb41-d702-4428-935c-b1d3f949b800</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>View\main.py</StartupFile>
+    <StartupFile>test.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app.py" />
     <Compile Include="Controller\CrudController.py">
       <SubType>Code</SubType>
     </Compile>
@@ -32,6 +33,8 @@
     <Compile Include="Model\User.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Router.py" />
+    <Compile Include="test.py" />
     <Compile Include="View\main.py">
       <SubType>Code</SubType>
     </Compile>
@@ -43,7 +46,6 @@
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB\Pinjaman.txt" />
     <Content Include="DB\Transaction.txt">
       <SubType>Code</SubType>
     </Content>

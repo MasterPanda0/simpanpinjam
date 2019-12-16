@@ -5,14 +5,14 @@ import fileinput
 
 class User:
     def __init__(self):
-        self.CRUD = Controller.CrudController.CRUD("Customer.txt")
+        self.CRUD = Controller.CrudController.CRUD("User.txt")
 
     def getUsers(self):
         users=[]
         data = self.CRUD.readAll().split('\n')
         for i in data:
             parse = json.loads(i)
-            users.append(UserModel(parse['id'],parse['name'],parse['age']))
+            users.append(UserModel(parse['id'],parse['username'],parse['password'],parse['level']))
         return users
 
     def getWhere(self,col,val):
@@ -21,12 +21,12 @@ class User:
         for i in data:
             parse = json.loads(i)
             if parse[col]==val:
-                users.append(UserModel(parse['id'],parse['name'],parse['age']))
+                users.append(UserModel(parse['id'],parse['username'],parse['password'],parse['level']))
         return users
 
-    def addUser(self,name,age):
+    def addUser(self,name,password,level):
         last = self.getUsers()
-        buff = '{ "id":'+str(last[-1].id+1)+',"name":"'+name+'","age":'+str(age)+' }'
+        buff = '{ "id":'+str(last[-1].id+1)+',"username":"'+name+'","password":"'+password+'","level":'+str(level)+' }'
         self.CRUD.Write(buff)
 
     def findRecord(self, col, value):
@@ -54,7 +54,8 @@ class User:
             
 
 class UserModel:
-    def __init__(self,id, name,age):
+    def __init__(self,id, username,password,level):
         self.id = id
-        self.name=name
-        self.age = age
+        self.username=username
+        self.password = password
+        self.level = level
