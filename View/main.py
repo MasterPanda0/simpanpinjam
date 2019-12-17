@@ -293,7 +293,7 @@ class View:
         return True
 
     def registerUser(self):
-        print("Reg User")
+        print("Registrasi User")
         username = str(input("Username: "))
         level = self.verifyInt("Level: ")
         pwd = str(input("Password: "))

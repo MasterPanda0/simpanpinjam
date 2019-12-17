@@ -2,7 +2,7 @@ import View.main
 from pyfiglet import Figlet
 
 class Router:
-    def __init__(self, appname = "untitled", interface = "cli",header = False):
+    def __init__(self, appname = "untitled" , interface = "cli",header = False):
         self.path = [0,0,0,0]
         self.appname = appname
         self.interface = interface
