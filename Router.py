@@ -280,12 +280,14 @@ class Router:
                     self.printHeader()
                     res = self.view.listUsers()
                     self.handleRes(res, 0, 1)
+                    self.pressToContinue()
                     continue
                 elif self.path[1] == 2:
                     # Register User
                     self.printHeader()
                     res = self.view.registerUser()
                     self.handleRes(res, 0, 1)
+                    self.pressToContinue()
                     self.view.cls()
                     continue
                 elif self.path[1] == 3:

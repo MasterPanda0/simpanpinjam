@@ -40,6 +40,13 @@ class View:
         os.system('cls' if os.name == 'nt' else 'clear')
         # print(chr(27) + "[2J")
 
+    def verifyInt(self, msg=''):
+        inp = str(input(msg))
+        while not str(inp).isnumeric():
+            print("Masukan hanya angka saja (int)")
+            inp = str(input(msg))
+        return int(inp)
+
     def login(self):
         msg = "Login"
         username = str(input("Username: "))
@@ -71,13 +78,13 @@ class View:
         print("Reg Nasabah (siapkan Nama, NIK, Saldo Setoran Awal")
         nama = str(input("Nama: "))
         nik = str(input("NIK: "))
-        saldo = int(input("Setoran awal: "))
+        saldo = self.verifyInt("Setoran awal: ")
         while saldo < 1000000:
             if saldo < 0:
                 print("Maneh mabok?")
             else:
                 print("Kurang boi")
-            saldo = int(input("Setoran awal: "))
+            saldo = self.verifyInt("Setoran awal: ")
         query = self.customer.addCust(nama, nik, saldo)
         uid = self.customer.getCusts()[-1].uid
         self.transaction.addTrx(uid,0,saldo)
@@ -288,7 +295,7 @@ class View:
     def registerUser(self):
         print("Reg User")
         username = str(input("Username: "))
-        level = str(input("Level: "))
+        level = self.verifyInt("Level: ")
         pwd = str(input("Password: "))
         re_pwd = str(input("Re-password: "))
         if pwd != re_pwd:
@@ -300,10 +307,6 @@ class View:
         if level == "":
             print('Level cannot be blank!')
             return False
-        if not level.isnumeric():
-            print('Level must be a number!')
-            return False
-        level = int(level)
         exist = self.users.getWhere("username",username)
         if len(exist) > 0:
             print("Username already taken")
@@ -314,7 +317,7 @@ class View:
 
     def editUser(self, id):
         print("Edit User")
-        query = int(input("ID: "))
+        query = self.verifyInt("ID: ")
         if query == id:
             print("Tolong ubah data anda pada setting.")
             return False
@@ -335,7 +338,7 @@ class View:
 
     def deleteUser(self, id):
         print("Delete User")
-        query = int(input("ID: "))
+        query = self.verifyInt("ID: ")
         if query == id:
             print("Tidak dapat menghapus diri sendiri")
             return False
@@ -363,7 +366,7 @@ class View:
         select = None
         valid = [0,1]
         while select == None or select not in valid:
-            select = int(input("Please select (0. asc | 1. desc): "))
+            select = self.verifyInt("Please select (0. asc | 1. desc): ")
         u_custs = self.customer.getCusts()
         # sort here
         u_custs.sort(key = attrgetter('simpanan'),reverse = select)
@@ -385,7 +388,7 @@ class View:
         select = None
         valid = [0,1]
         while select == None or select not in valid:
-            select = int(input("Please select (0. asc | 1. desc): "))
+            select = self.verifyInt("Please select (0. asc | 1. desc): ")
         u_custs = self.customer.getCusts()
         # sort here
         u_custs.sort(key=attrgetter('pinjaman'),reverse=select)
