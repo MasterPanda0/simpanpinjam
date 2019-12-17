@@ -90,6 +90,7 @@ class View:
         self.transaction.addTrx(uid,0,saldo)
         if query:
             print("Nasabah berhasil didaftarkan")
+            print('User Account:',query)
             return True
         else:
             print("Nasabah gagal didaftarkan")

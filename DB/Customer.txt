@@ -2,3 +2,5 @@
 { "id":2,"uid":"13202361","nama":"budi","nik":"1234","simpanan":101040000,"pinjaman":0 }
 { "id":3,"uid":"13202364","nama":"johnny","nik":"09876543221","simpanan":1000000,"pinjaman":0 }
 { "id":4,"uid":"13202367","nama":"budi buda budo","nik":"1294725","simpanan":5000000,"pinjaman":0 }
+{ "id":5,"uid":"13202370","nama":"tester placeholder","nik":"123456789","simpanan":1000000000,"pinjaman":0 }
+{ "id":6,"uid":"13202373","nama":"test","nik":"123","simpanan":1000000,"pinjaman":0 }

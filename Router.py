@@ -119,6 +119,7 @@ class Router:
                         self.printHeader()
                         res = self.view.registerNasabah()
                         self.handleRes(res,1,2)
+                        self.pressToContinue()
                         self.view.cls()
                         continue
                     elif self.path[2] == 2:
