@@ -46,6 +46,7 @@
     <Folder Include="View\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="config.ini" />
     <Content Include="DB\Transaction.txt">
       <SubType>Code</SubType>
     </Content>
