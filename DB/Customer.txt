@@ -1,2 +1,3 @@
 { "id":1,"uid":"13202352","nama":"budi","nik":"1234567891234567","simpanan":100000,"pinjaman":50000000 }
 { "id":2,"uid":"13202361","nama":"budi","nik":"1234","simpanan":1050000,"pinjaman":0 }
+{ "id":3,"uid":"13202364","nama":"johnny","nik":"09876543221","simpanan":1000000,"pinjaman":0 }

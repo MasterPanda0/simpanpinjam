@@ -31,6 +31,13 @@ class Transactions:
         buff = '{ "id":'+str(last[-1].id+1)+',"date":"'+self.now.strftime("%d/%m/%Y %H:%M:%S")+'","account":"'+account+'","type":'+str(type)+',"value":'+str(value)+' }'
         self.CRUD.Write(buff)
 
+    def delete(self,col,val):
+        raw = self.CRUD.readAll()
+        rw = raw.split('\n')
+        row = self.findRecord(col,val)
+        raw = raw.replace(rw[row]+'\n','')
+        self.CRUD.forceWrite(raw)
+
             
 
 class TransactionModel:

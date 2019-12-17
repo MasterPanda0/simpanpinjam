@@ -348,6 +348,7 @@ class View:
                     break
             if choice.lower() == "y":
                 #delete user
+                self.users.delete('id',query)
                 print("Delete user berhasil.")
                 return True
             else:
